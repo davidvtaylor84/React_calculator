@@ -28,7 +28,14 @@ describe("Calculator", () => {
     cy.get('.display').should('contain', '54')
   })
 
-  it('can take in a range of numbers', ()=>{
+  it('can take in positive numbers', ()=>{
+    cy.get('#number8').click();
+    cy.get('#operator-subtract').click()
+    cy.get('#number4').click();
+    cy.get('.display').should('contain', '4')
+  })
+
+  it('can take in negative numbers', ()=>{
     cy.get('#number4').click();
     cy.get('#decimal').click();
     cy.get('#number8').click();
@@ -43,6 +50,43 @@ describe("Calculator", () => {
     cy.get('#number8').click();
     cy.get('#operator-equals').click()
     cy.get('.display').should('contain', '-963173.6')
+  })
+
+  it('can use decimal numbers',()=>{
+    cy.get('#number3').click();
+    cy.get('#decimal').click();
+    cy.get('#number6').click();
+    cy.get('#operator_add').click()
+    cy.get('#number6').click();
+    cy.get('#decimal').click();
+    cy.get('#number8').click();
+    cy.get('#number7').click();
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '10.47')
+  })
+
+  it('can use very large numbers', ()=>{
+    cy.get('#number4').click();
+    cy.get('#number9').click();
+    cy.get('#number6').click();
+    cy.get('#number3').click();
+    cy.get('#number1').click();
+    cy.get('#number8').click();
+    cy.get('#number6').click();
+    cy.get('#number3').click();
+    cy.get('#number1').click();
+    cy.get('#operator-multiply').click();
+    cy.get('#number7').click();
+    cy.get('#number6').click();
+    cy.get('#number3').click();
+    cy.get('#number9').click();
+    cy.get('#number6').click();
+    cy.get('#number3').click();
+    cy.get('#number1').click();
+    cy.get('#number8').click();
+    cy.get('#number8').click();
+    cy.get('#operator-equals').click()
+    cy.get('.display').should('contain', '379169163602555650')
   })
 
   it('can display Error if divided by 0', ()=>{

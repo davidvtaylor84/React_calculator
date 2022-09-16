@@ -83,6 +83,27 @@ describe('Calculator', () => {
     expect(runningTotal.textContent).toEqual('81134')
   })
 
+  it('should chain multiple operations together', ()=>{
+    const button3 = container.getByTestId('number3');
+    fireEvent.click(button3)
+    const divideButton = container.getByTestId('operator-divide')
+    fireEvent.click(divideButton)
+    const button8 = container.getByTestId('number8');
+    fireEvent.click(button8)
+    const minusButton = container.getByTestId('operator-subtract')
+    fireEvent.click(minusButton)
+    const button5 = container.getByTestId('number5')
+    fireEvent.click(button5)
+    const multiplyButton = container.getByTestId('operator-multiply')
+    fireEvent.click(multiplyButton)
+    const button2 = container.getByTestId('number2');
+    fireEvent.click(button2)
+    const equals = container.getByTestId('operator-equals')
+    fireEvent.click(equals)
+    const runningTotal = container.getByTestId('running-total')
+    expect(runningTotal.textContent).toEqual('-9.25')
+  })
+
   it('it should clear the running total without affecting the calculation', ()=>{
     const button8 = container.getByTestId('number8');
     fireEvent.click(button8)
